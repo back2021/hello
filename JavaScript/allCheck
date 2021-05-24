@@ -1,0 +1,47 @@
+<script type="text/javascript">
+  $(function(){
+    $("#allcheck").on("click",function(){
+      if($("#allcheck").prop("checked")){
+        $("#ipsamok").prop("checked",true);
+        $("#ipsamok2").prop("checked",true);
+        $("#ipsamok3").prop("checked",true);
+      }
+    })
+  });
+</script>
+
+<div class="">
+  <label for="allcheck" class="pointer join-checkbox-label pull-left">
+    <input id="allcheck" type="checkbox" name="allcheck"><span>전체 동의</span>
+  </label>
+  <div class="clearfix"></div>
+</div>
+<div class="the_line"></div>
+<div class="join-checkbox">
+  <ul class="list-unstyled">
+    <li>
+      <label for="ipsamok" class="pointer join-checkbox-label pull-left">
+        <input id="ipsamok" type="checkbox" name="ipsamok"><span>잎샘 이용 약관 동의</span>
+      </label>
+      <div class="pull-right">
+        <a id="ipsamok-btn" class="pointer">내용보기</a>
+      </div>
+      <div class="clearfix"></div>
+    </li>
+    <li>
+      <label for="ipsamok2" class="pointer join-checkbox-label pull-left">
+        <input id="ipsamok2" type="checkbox" name="ipsamok2"><span>개인 정보 수집,이용 동의</span>
+      </label>
+      <div class="pull-right">
+        <a id="ipsamok2-btn" class="pointer">내용보기</a>
+      </div>
+      <div class="clearfix"></div>
+    </li>
+    <li>
+      <label for="ipsamok3" class="pointer join-checkbox-label pull-left">
+        <input id="ipsamok3" type="checkbox" name="ipsamok3"><span>만 14세 이상입니다.</span>
+      </label>
+      <div class="clearfix"></div>
+    </li>
+  </ul>
+</div>
