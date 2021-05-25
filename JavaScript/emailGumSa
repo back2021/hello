@@ -1,0 +1,18 @@
+
+			var reg_email = /^([0-9a-zA-Z_\.-]+)@([0-9a-zA-Z_-]+)(\.[0-9a-zA-Z_-]+){1,2}$/;
+			var temail = $("#email").val();
+			if(!reg_email.test(temail)) {
+				alert("이메일이 양식에 맞지않습니다");
+				$("#email").focus();
+				return false;
+			}else {
+				var testmail = temail.split("@");
+				var navermail = testmail[0];
+				var navermail2 = testmail[1];
+				if(navermail2 !="naver.com" ){
+					alert("이메일이 양식에 맞지 않습니다");
+					$("#email").focus();
+					return false;
+				}else{
+				}
+			}
