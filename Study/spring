@@ -1,0 +1,117 @@
+스프링 프레임 워크
+
+웹문서 제작이 쉬워진다~
+
+기본 이클립스 시작 설정 후
+헬프 -> 마켓플레이스 -> spring 검색
+나뭇잎모양 인스톨 confirm !
+소프트웨어 인스톨 -> 이클립스 다시시작
+
+우측상단 오픈 스프링선택
+
+파일 -> 뉴 -> 스프링 레거시 프로젝트
+-> MVC선택 이름작성 ->
+프로젝트 도메인 거꾸로해서 이름 붙이고 생성
+
+패키지를 만든다 src/main/java 밑에
+(controller, domain, mapper, presistence, service, util)
+
+
+lombok 다운로드
+(getter, setter, toString, 생성자를 자동으로 해준다)
+명령프롬프트 관리자권한 실행
+java -> jdk -> bin 폴더 경로를 cd 명령어로 이동
+dir java.exe로 자바exe파일 있는지 확인
+이클립스 폴더에 lombok.jar 복사 붙여넣기
+명령프롬프트에
+java -jar "C:\Program Files\Java\eclipse\lombok.jar" 이거 실행
+하면은 설치 창이 뜨는데
+자기가 설치한(스프링 설치한, 사용하는) 이클립스 폴더가 맞는지 확인하고
+아니면 맞는 폴더로 경로 설정후 인스톨ㄱㄱ
+
+이클립스.ini 파일을 노트패드로 열어주고
+-vm
+C:\Program Files\Java\jdk1.8.0_271\bin\javaw.exe
+맨위에 이걸 붙여넣어주고 저장
+
+==========!!이클립스 열고 pom.xml열기!!===============
+java버전을 1.8로 바꾼다
+밑에 스프링 프레임워크 버전을 5.0.7로 바꾸고
+저장해주면
+이클립스가 자동으로 다운 받는다
+그렇게 다운받은 라이브러리들은
+C:\Users\USER\.m2\repository 여기에 저장이 된다
+(가끔식 오류 나기도 하는데 무선인터넷 이용하면 다운이 잘안되서그럼
+그러면 지워버리면 자동으로 깔아준다^^)
+
+maven-compiler-plugin
+버전을 3.5.1로 바꾸고
+소스랑 타겟도 1.8로 바꿔준다
+프로젝트 오른쪽 클릭 Maven update Project 해준다
+
+구글에 maven repository 검색후 나오는 사이트에서
+lombok 검색하고 lombok maven plugin 클릭하고
+1.18.0.0 버전 찾아서 Maven 복사해서 <--test-->위에 붙여넣기 해준다
+
+junit 버전 4.12로
+log4j 라이브러리 버전 1.2.17로 한다
+
+클래스 만들때
+
+@Component (스프링에서 관리하는 대상임을 표시)
+@Data (클래스 작성을 원할하게 도와줌)
+이거를 붙여준다
+
+
+<dependency>
+<groupId>org.springframework</groupId>
+<artifactId>spring-test</artifactId>
+<version>5.0.7.RELEASE</version>
+</dependency>
+<!-- test- -> 위에 이걸 붙여주어야 테스트 가능
+
+<!-- https://mvnrepository.com/artifact/com.zaxxer/HikariCP -->
+<dependency>
+    <groupId>com.zaxxer</groupId>
+    <artifactId>HikariCP</artifactId>
+    <version>2.7.4</version>
+</dependency>
+HikariCP 폼.xml에 넣어주고
+
+root-context.xml 파일에
+<bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
+<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
+<property name="jdbcUrl" value="jdbc:oracle:thin:@localhost:1521:xe"/>
+<property name="username" value="jsl"/>
+<property name="password" value="1234"/>
+		
+</bean>
+<bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource" destroy-method="close">
+<constructor-arg ref="hikariConfig"/>
+</bean>	
+써서 넣어준다
+
+마이바티스도
+maven repository 사이트에서 검색해서 3.4.6 버전 넣어준다
+마이바티스 스프링 1.3.2버전도 넣어 줘야 한다
+
+Spring Transaction (spring -tx) 아무버전이나 넣어준다
+위에꺼 복붙해서 spring-tx부분에 tx대신
+ㅁㅇㄻㅎ 를 써주고 저장
+
+----------------------------------------
+스프링의 MVC
+3 계층
+
+src -> main-> views 폴더
+계층
+
+비즈니스 계층
+
+보관하는
+마이바티스 계층
+
+
+폼.xml -> 루트콘텍스트.xml -> 서블릿.xml
+-> 패키지 생성(콘트롤러, 매퍼, 서비스)
+->
