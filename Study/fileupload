@@ -1,0 +1,16 @@
+	스프링
+common-fileupload방식 
+
+<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <beans:property name="defaultEncoding" value="UTF-8" />
+        <!-- 업로드 하는 파일이 한글일 경우 깨짐 방지 -->
+        <beans:property name="maxUploadSize" value="104857560" />
+        <!-- 한번에 request로 전달할 수 있는 최대의 크기 -->
+        <beans:property name="maxUploadSizePerFile" value="2097152" />
+        <!-- 하나의 최대 업로드 파일 크기 -->
+        <beans:property name="uploadTempDir" value="file:/c:/upload/temp" />
+        <!-- 업로드 절대경로 -->
+        <beans:property name="maxInMemorySize" value="10485756" />
+        <!-- 메모리상에서 유지하는 최대의 크기 -->
+        <!-- 이 크기 이상의 데이테는 uploadTempDir에 임시 파일의 형태로 보관된다 -->
+	</beans:bean>
