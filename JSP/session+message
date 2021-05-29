@@ -1,0 +1,23 @@
+
+~~액션~~~
+HttpSession session = request.getSession();
+
+
+session.setAttribute("message", "아이디와 패스워드 확인 바람니다");
+response.sendRedirect("login.do");
+
+~~로그인.두~~
+
+<c:if test="${not empty message }">
+  <script>
+    //alert("${message}"); 이거는 보안상 해킹당할수 있으니 밑에 것으로 작성하자
+    alert('<c:out value="${message}"/>');
+  </script>
+</c:if>
+<% session.removeAttribute("message"); %>
+
+설명 : 넣고싶은 말을 세션에 messange 라는 이름으로 담고
+코어 이프 문으로 message 가 있을 경우~
+message를 출력해라
+그러고
+message를 세션에서 지워라 라는 뜻이다
