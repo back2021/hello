@@ -1,0 +1,9 @@
+HttpSession session = request.getSession(false);
+		if (session != null) {
+			session.invalidate();
+		}
+    
+    ~~~설명~~~
+    로그인 하면 세션에다 사용자 정보가 담겨져 있는데
+    세션을 초기화 하면 사용자 정보를 초기화 해서
+    로그아웃 이다
