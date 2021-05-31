@@ -1,0 +1,8 @@
+2021.05.31 조별 프로젝트 할때 프로젝트 리스트 뽑기위해 한 sql문
+select 
+a.pno, a.pname1, a.pname2, a.pcontent1, to_char(a.pcontent2), a.pcontent3,
+a.id, a.pgrade, a.pmoney, a.nowmoney,
+a.odate, a.gdate, a.paccount, 
+b.name, b.bno
+from project a, member b
+where (a.id = b.id) and a.pgrade >= 1 and a.pno = 1;
