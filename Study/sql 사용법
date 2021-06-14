@@ -1,0 +1,269 @@
+SQL Debeloper
+
+오라클 206p table만들기
+
+	테이블 만들기
+create table member ( --테이블 이름 멤버
+custno number(6) not null primary key, 
+--custno 라는 이름의 null값을 갖지못하는 유일한 키를 가지는 숫자형태(6자리)
+custname varchar2(10), --custname 이름을 저장할 수 있는 10자리 크기의
+phone varchar2(20), --전화번호 저장가할려고
+address varchar2(100), --주소 저장할려는 100크기(바이트)
+joindate date, --달력값 저장할
+grade char(1), --등급 저장할꺼
+city char(2) --도시 코드를 저장할꺼다
+);
+
+number  varchar2 varchar2  varchar2  date        char  char
+custno  custname phone     address  joindate   grade city
+사원번호 이름 전화번호          주소    가입일      등급 도시코드
+100001 홍자바 010-1111-1111 대전시 2020-02-02 A 07
+
+데이터 형식을 지정할때
+char : 고정 크기의 값
+varchar2 :  가변적 크기의 값
+
+not null : null 값을 가질수 없다 허용하지 않겠다
+primary key : 기준값을 가지는 유일한 키
+
+ 	SQL(Structured Query Language)언어의 종류
+DML, DDL, DCL, TCL
+
+ 	데이타 정의어(DML)
+데이터 조작할때 사용
+조회 입력 변경 삭제할때
+SELECT INSERT UPDATE DELETE
+
+-- 주석처리
+
+	테이블에 값을 저장할때
+insert into member (custno,custname,phone,address,joindate,grade,city)
+values (100001,'홍자바','010-1111-1111','자바시 자바동 자바리','2020-02-02','A','26');
+컬럼
+밸류
+두번째 부터는 컬럼 생략 가능 다만 순서대로 꼭 해야함
+
+select * from member; 멤버테이블에서 전체 출력
+select custno,custname,phone from member; 멤버테이블에서 일부 출력
+select max(custno) from member; 멤버테이블에서 custno가 가장큰값 출력
+
+	조건 삭제하기
+delete member where custno=100001; 
+custno가 1001인 멤버 삭제
+조건을 다룰때는 where을 사용한다
+
+	조건 검색하기
+select * from member where custno < 100003;
+100003보다 큰 멤버를 찾는다
+
+	테이블 밸류값 수정하기
+update member set phone='010-9999-9999' where custno=100003;
+전화번호를 셋 시키세요 where custno가 100003인것을
+
+
+rollback;
+저장된것을 불러온다
+
+commit;
+영구적으로 DB에 물리적으로 저장된다
+
+	조건 출력 정렬
+검색 모든 멤버테이블  정렬해라 custno 오름차순
+select * from member order by custno asc;
+멤버 테이블을 custno 기준으로 정렬하라는 뜻
+
+검색 모든 멤버테이블  정렬해라 grade 내림차순
+select * from member order by grade desc;
+
+asc 오름차순 desc 내림차순
+max 최대값 min 최소값
+
+
+select count(*) from member;
+전체 크기 셀때 count사용한다
+
+	테이블 제거
+drop table member;
+멤버 테이블을 지운다 롤백해도 안돌아온다
+
+sysdate 현재 시스템 날짜
+
+	검색 2가지 조건 정렬
+select * from member order by joindate desc, grade asc;
+joindate 기준으로 내림차순으로 정렬하는데 같으면
+grade 기준으로 오름차순으로 정렬하시오
+
+컬럼명 like '포함된%'
+
+rollback commit은 
+TCL언어 라고 한다
+
+desc member;
+멤버 테이블 구조
+
+alter table member drop column city;
+멤버 테이블을 수정하는데 city컬럼을 지운다
+alter table member add(city char(2));
+city컬럼을 추가한다
+
+update member set city='11' where custno=100001;
+custno가 100001인 것의 city에 11을 넣는다
+
+	수정 알고리즘
+수정하고자 하는 레코드 검색
+키를 검색하고 기존 값을 보여주고
+수정하고자 하는 값을 입력 받고
+수정
+
+alter table member rename column custname to name;
+custname 컬럼의 이름을 name으로 바꾼다
+
+alter table member modify address varchar2(200);
+address 의 저장할수 있는 크기를 200바이트로 변경했다
+구조를 바꿀때는 modify를 사용한다
+
+alter table member add constraint member_pk primary key (custno);
+제약조건을 가지고 있는 이름이 member_pk 를 추가한다
+제약조건을 추가하는데 이름은 member_pk이고 조건은 custno primary key
+
+primary key 를 넣는 방법은 여러가지 있다
+constraint member_pk primary key (custno)
+
+오라클 책 17p 자료의 저장타입
+
+auto_increment 라는 자동으로 인설트 할때마다 수가 증가하는게 있는데
+오라클은 안됨 리밋이라는거도 안됨
+
+오라클책 292p 시퀀스
+테이블 내의 유일한 숫자를 자동으로 생성해 준다
+
+-- 123.89 > number > 123.89 
+전부저장
+-- 123.89 > number(3) > 123
+정수 3자리 저장
+-- 123.89 > nuber(3,2) > exceds precision
+오류
+-- 123.89 > number(5,2) > 123.89
+전체 자리수 3자리 소수 2자리 저장
+-- 123.89 > number(6,1) > 123,9
+전체 자리수 6자리 소수 1자리 반올림후 저장
+
+ 시퀀스 생성
+-- 오직 유일한 숫자를 자동으로 생성하는 기능
+create sequence score_seq;
+만든다  시퀀스    테이블이름_이름
+score_seq.nextval
+자동으로 다음 숫자를 생성한다
+
+insert into money values (100001,20210001,500,5,2500,'A001','20210209')
+insert into money values (100001,20210002,1000,4,4000,'A002','20210209')
+insert into money values (100001,20210003,500,3,1500,'A008','20210209')
+insert into money values (100002,20210004,2000,1,2000,'A004','20210210')
+insert into money values (100002,20210005,1500,2,3000,'A003','20210210')
+insert into money values (100006,20210006,200,5,1000,'A003','20210210')
+insert into money values (100004,20210007,1000,4,4000,'A005','20210211')
+insert into money values (100004,20210008,600,1,600,'A006','20210211')
+
+
+-- 회원번호 회원성명 회원등급 매출총액
+-- 100001 홍길동    VIP    800
+-- 100002 이순신    VIP    5000
+
+인어조인 아웃터조인
+
+
+	두개의 테이블을 조인해서 출력하는 방법
+select m1.custno,m1.custname,m1.grade, sum(price) as tot
+from member m1, money m2 --member와 money에 별칭을 붙여줬다
+where m1.custno = m2.custno  --member와 money의 같은 조건만
+group by m1.custno,custname,grade --하나로 출력하기위해
+order by tot desc;
+코딩하는 순서 기억하기
+
+	group by 오라클책 149p 보기
+
+
+	서브쿼리
+select viewcount from notice where bno=25; 검색 결과 8이나옴
+bno가 25인 레코드의 조회수 출력
+select * from notice where viewcount > 8; 조회수 8이상의 레코드 출력
+
+위 코드 두줄을 한줄로 작성가능하다(이를 서브쿼리 라고 한다)
+select * from notice where viewcount 
+> (select viewcount from notice where bno=25);
+
+select * from notice where bno = 
+(select min(bno) from notice where bno > 27);
+bno 가 27보다 큰 레코드들 중에서 가장 작은(min(bno)) 숫자를
+가진 레코드를 출력한다
+반대로도 가능하다(min,max >,<)
+
+
+
+select * from notice where title like '%서블릿%';
+전체 레코드들 제목에 서블릿이 들어가는 레코드 전체 출력
+select * from notice where content like '%서블릿%';
+전체 레코드들 내용에 서블릿이 들어가는 레코드 전체 출력
+select * from notice where title like '%서블릿%' or content like'%서블릿%';
+전체 레코드들 제목,내용에 서블릿이 들어가는 레코드 전체 출력
+
+
+	DB에서 순서대로 3개만 출력하기
+rownum 을 이용한다
+select * from portfolio where rownum < 4 order by bno desc;
+포트폴리오 전체중에 bno를 내림차순한거를 rownum을 붙이고 4미만의글들만 출력한다
+select rownum,bno,title,regdate from portfolio where rownum < 4 order by bno desc;
+위에거중에 bno,제목,날짜만 출력
+select rownum,bno,title,regdate from
+(select * from portfolio order by bno desc);
+최근에 등록된글 3개의 bno,title,regdate를 출력한다
+
+	DB안에 있는거 복붙하기
+insert into notice (bno,title,content,writer,regdate,viewcount)
+(select notice_seq.nextval,title,content,writer,regdate,viewcount from notice);
+
+	인덱스와 오라클 힌트
+select /*+ index_desc(notice notice_pk) */* from notice; 
+-- /* */ 안에 있는 내용이 힌트다
+인덱스를 이용해서 출력하는게 속도가 더 좋다
+힌트 안에 잘못된 내용이 있어도 실행은 된다 
+
+	10에서 20번째 글 출력 하기
+select * from (
+    select /*+ index_desc (notice notice_pk) */ rownum rn,bno,title from notice 
+    where rownum <=20
+ ) where rn > 10;
+로우넘이 20보다 작거나 같은 글을 구한다음 10보다 큰 글들만 출력된다
+변수 pageNum, amount
+select * from (
+    select /*+ index_desc (notice notice_pk) */ rownum rn,bno,title from notice 
+    where rownum <= pageNum * amount;
+ ) where rn > (pageNum-1) * amount;
+
+	좋아요 기능
+일단 좋아요 이력을 저장할 테이블을 만든다(test_like)
+그리고 좋아요 기능을 표시할 게시판 테이블에 좋아요컬럼(default=0)을 추가한다
+좋아요 버튼을 눌렀을때 해당 게시물 bno와 누른사람(id)를 test_like 테이블에서 찾는다
+select * from test_like where bno = 5 and id = 'abc';
+있을경우에는 rs.next가 true가 되고 없을때는 false가 되는 점을 이용해라
+암튼 없을경우에는 테이블에 bno 와  id를 저장한다
+insert into test_like values (5,'abc');
+있으면 조건문을 통해 없애라
+delete test_like where bno = 5 and id ='abc';
+참고로 위 조건문을 실행할때 따로 게시판 테이블 좋아요 컬럼 
+값을 1씩 증가하거나 감소 시켜라
+
+==================================================
+MySQL
+
+페이징
+select * from ~~~
+~~
+limit 0,4;
+테이블에서 0에서 부터 4개씩 보여준다
+
+=================================================
+PL/SQL
+동적 sql
+마이바티스에서
+제어문을 통해 동적SQL 만들수 있다
