@@ -1,0 +1,27 @@
+<script>
+		$(function(){
+			$(".myproject > ul > li > .viewson").on("click",function(e) {
+				e.preventDefault();
+				$(".modal .modal_content .modal_body").html("<iframe src='/port/pdf/sonshine.pdf'></iframe>");
+				$(".modal").fadeIn(1000);
+				});
+			$(".myproject > ul > li >  .viewtrack").on("click",function(e) {
+				e.preventDefault();
+				$(".modal .modal_content .modal_body").html("<iframe src='/port/pdf/onthetrack.pdf'></iframe>");
+				$(".modal").fadeIn(1000);
+				});
+			$(".myproject > ul > li >  .viewip").on("click",function(e) {
+				e.preventDefault();
+				$(".modal .modal_content .modal_body").html("<iframe src='/port/pdf/ipsam.pdf'></iframe>");
+				$(".modal").fadeIn(1000);
+				});
+
+			$(".modal .modal_content > a").on("click", function(e) {
+				e.preventDefault();
+				$(".modal .modal_content .modal_body").html("");
+				$(".modal").fadeOut(1000);
+			});
+		});
+	</script>
+  
+  버튼을 클릭하면 모달 바디안에 iframe pdf 를 넣는 
