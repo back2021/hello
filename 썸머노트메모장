@@ -1,0 +1,66 @@
+썸머노트 사용하는 방법 (간단 ^^)
+(CDN 방식 아님)
+
+0.제이쿼리 필수입니다
+
+1.준비물 폴더 확인하기
+- lang 폴더 
+썸머노트 언어팩 이중에서 summernote-ko-KR.js를 사용합니다
+- css 폴더
+summernote-lite.css : 썸머노트 css
+font폴더 : 썸머노트에서 사용하는 폰트들 인거 같습니다
+- js 폴더
+summernote-lite.js : 썸머노트를 실행시키기 위한 js파일 입니다
+getsummernote.js : 썸머노트 툴바를 사용을 위한 스크립트로 
+툴바 변경을 원하시면 수정이 가능합니다.
+
+2. 썸머노트를 사용할 영역 지정하기
+- <div>태그나 <textarea>태그에 클래스에 summernote 라는 이름을 주시면 됩니다
+(다른 이름을 원하시면 getsummernote.js 스크립트를 수정해서 사용 가능할것 같습니다)
+- <div>태그를 사용하기 보다는 <textarea>태그를 사용하는것을 추천하는 것 같습니다
+
+2.5 테이블의 타입 지정
+- varchar2의 최대 크기가 아마 4000일텐데 썸머노트이미지 업로드가
+base64 방식이라고 하는데 저도 잘은 모르지만 이 방식으로 그냥 업로드하면
+varchar2(4000)의 크기를 훨씬 넘어버리기때문에 varchar2 보다는 CLOB 타입으로
+지정해주시면 잘 들어갑니다.
+( 콜백함수를 사용해서 해결하는 방법도 있습니다 )
+
+3. 이미지 파일 업로드 하기
+- <textarea name="content" class="summernote "></textarea> 
+를 감싸고 있는 <form>태그에
+enctype 을 multipart/form-data 로 해줍니다 
+(<textarea name="content" class="summernote " enctype="multipart/form-data" ></textarea>) 
+- 서블릿에서 받을때
+ : multipart로 보냈기 때문에 multipart로 받기 위해 설정을 해주셔야 합니다
+
+// 이미지 최대 사이즈 설정 (5MB)
+int sizeLimit = 5 * 1024 * 1024;
+// 업로드 폴더 설정
+String savePath = "업로드할 폴더 이름";
+// 실제 경로 찾기 ( 진짜 업로드 되는 폴더 경로찾기, 자세한설명은 복잡합니다;;; )
+ServletContext context = session.getServletContext();
+String uploadFilePath = context.getRealPath(savePath);
+// 콘솔창에서 실제로 파일이 업로드 되는 폴더 찾기
+System.out.println(uploadFilePath); 
+
+// 위에 설정 적용해서 객체 생성 하기
+MultipartRequest multi;
+multi = new MultipartRequest(
+request, uploadFilePath, sizeLimit, "UTF-8", new DefaultFileRenamePolicy() );
+
+// 요청하기
+String content = multi.getParameter("content");
+
+// 이제 content를 DTO(VO)에 담고 DAO를 이용해 실행 시키면 될것같습니다~
+
+4. 주의사항
+- <button> css 조심  : 
+버튼에 margin이나 padding을 제대로 주지 않으면 
+썸머노트 툴바가 난장판이 됩니다.
+- <input> css 조심 : 
+인풋 태그에 css를 함부로 주었다가 버튼 모양이 이상해집니다
+- modal 사용 주의 :
+썸머노트 툴바 몇몇은 모달창을 이용하는 것 같습니다
+오류가 날 수 있으니 주의 바랍니다
+- 그외 등등~
