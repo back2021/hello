@@ -1,0 +1,55 @@
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+	<input id="hiddeninput" value="" >
+	<p class="star_rating">
+		<a href="#" id="1">★</a>
+		<a href="#" id="2">★</a>
+		<a href="#" id="3">★</a>
+		<a href="#" id="4">★</a>
+		<a href="#" id="5">★</a>
+	</p>
+	
+<style>
+.star_rating {font-size:0; letter-spacing:-4px;}
+
+.star_rating a {
+    font-size:22px;
+    letter-spacing:0;
+    display:inline-block;
+    margin-left:5px;
+    color:#ccc;
+    text-decoration:none;
+}
+.star_rating a:first-child {margin-left:0;}
+.star_rating a.on {color:#fc6a20;}
+</style>
+
+<script>
+	$(".star_rating a").click(function() {
+		$(this).parent().children("a").removeClass("on");
+		$(this).addClass("on").prevAll("a").addClass("on");
+		return false;
+	});
+	$("#1").on("click",function(){
+		$("#hiddeninput").val(1);
+	})
+	$("#2").on("click",function(){
+		$("#hiddeninput").val(2);
+	})
+	$("#3").on("click",function(){
+		$("#hiddeninput").val(3);
+	})
+	$("#4").on("click",function(){
+		$("#hiddeninput").val(4);
+	})
+	$("#5").on("click",function(){
+		$("#hiddeninput").val(5);
+	})
+</script>
+
+<script	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+</body>
+</html>
