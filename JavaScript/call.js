@@ -19,6 +19,6 @@ function phone_format() {
     <input type="tel" name="phone" id="phone" value="${mvo.phone}" placeholder=" 하이픈(-) 없이 입력해주세요 ">
 		<input type="hidden" name="phone1" id="mobile1"><input type="hidden" name="phone2" id="mobile2"><input type="hidden" name="phone3" id="mobile3">
     
-    위에있는 인풋창에 전화번호를 하이픈 없이 입력하면
-    자동으로 하이픈이 들어가고
-    3가지로 쪼개져서 인풋히든으로 들어간다
+//    위에있는 인풋창에 전화번호를 하이픈 없이 입력하면
+//    자동으로 하이픈이 들어가고
+//    3가지로 쪼개져서 인풋히든으로 들어간다
