@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="utf-8">
+	<title>헤더</title>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<style type="text/css">
+
+	html,body{ margin:0; padding:0; width:100%;}/* 메뉴가 꽉차게 할려구 넓이를 100%로 잡았습니다 */
+	a {text-decoration:none !important;} 
+	/* 이부분은 원래 부트스트랩 a태그가 마우스올리면 밑줄 그어져서 안나오게 할려구 넣은거입니다 */
+	
+	.sangdanbar{
+		height:80px;
+		background:rgba(0,0,0,0.7);
+		border-color: #111;
+	}
+	/* 상단바는 메인메뉴를 품고있는 div 입니다 배경이나 나중에 로고,로그인(회원가입,마이페이지등)을 넣을수도 있습니다*/
+	.mainmenu > div {width:20%; text-align:center;} 
+	/* 상단바가 위에는 표시가 안되긴 했지만 넓이가 100%라서 메뉴 5개가 20%씩 먹게 했습니다, 그리고 글씨는 가운데 정렬 해놓았습니다*/
+	.mainmenu > div{float:left;}/*  div가 1열로 나란히 붙이려고 float을 주었습니다 */
+	.dropmenu > p{ font-size: 18px; margin-top:10px;}
+	.dropmenu > p > a { padding:30px 0px; color:#fff;}
+	/* 배경이 검은색이라 폰트색깔을 흰색으로 주었고 밑에 메뉴리스트가 메인메뉴랑 붙진 않게하려고 패딩을 주었습니다 */
+	.dropmenu > ul{display:none; padding:0px;} 
+	/* 처음에는 메뉴리스트가 보이지 않게 하려고 디스플레이를 none으로 했습니다 */
+	.dropmenu > ul > li{font-size: 16px; height:35px; }
+	.dropmenu > ul > li > a { color:#fff; }
+	.list-unstyled{list-style-type:none;}
+	/* ul li 앞에 꼬다리 안나오게 하는 css입니다, 부트스트랩에는 기본적으로 있는 css 클래스 입니다 */
+</style>
+
+<body>
+<script>
+$(function(){
+	$("#menudiv").on("mouseenter",function(){ //마우스를 '메뉴(.mainmenu)'에 (.sandanbar 아닙니다) 작동합니다
+			$("#downmenu > ul").css("display","inline-block") //기본적으로 밑에 메뉴들이 숨겨져있는데 그걸 보여줍니다
+			$(".sangdanbar").css("background","rgba(0,0,0,0.9)") 
+			// 상단바(.sandanbar)의 색을 변경해줍니다(여기서는 투명도만 조절했습니다)
+			$("#headerbar").stop().animate({ //움직이게됩니다
+				height:250 //상단바 높이를 250까지
+			},1000); //이거는 시간 관련된 숫자입니다
+		});
+		$("#headerbar").on("mouseleave",function(){ //마우스를 치우면
+			$("#downmenu > ul").css("display","none") //다시 메뉴를 안보이게하고
+			$(".sangdanbar").css("background","rgba(0,0,0,0.7)") //원래대로 색을 바꿔줍니다 위에 css 참고 해주시면됩니다
+			$(this).stop().animate({ //원래 크기로 움직입니다
+				height:80 //css상 원래 80px이라 다시 80으로 가게 했습니다
+			},1000); //여기도 마찬가지로 시간 입니다
+		});
+
+});//
+</script
+	<div>
+		<nav class="sangdanbar" id="headerbar">
+			<div>
+		  		<!-- 메뉴 -->
+				<div class="mainmenu" id="menudiv">
+					<div class="dropmenu" id="downmenu">
+						<p><a href="rule/rule.html">관람 안내</a></p>
+						<ul class="list-unstyled">
+							<li><a href="rule/rule.html">관람 규칙</a></li>
+							<li><a href="money/money.html">관람 요금 및 시간</a></li>
+							<li><a href="shelter/shelter.html">편의 시설</a></li>
+						</ul>
+					</div>
+					<div class="dropmenu" id="downmenu">
+						<p><a href="history/history.html">고궁 이야기</a></p>
+						<ul class="list-unstyled">
+							<li><a href="history/history.html">연혁</a></li>
+							<li><a href="story/story">역사적 이야기</a></li>
+						</ul>
+					</div>
+					<div class="dropmenu" id="downmenu">
+						<p><a href="palace/palace.html">보러 가는길</a></p>
+						<ul class="list-unstyled">
+							<li><a href="palace/palace.html">4대 궁궐,종묘</a></li>
+							<li><a href="tour/tour.html">관람 코스 추천</a></li>
+						</ul>
+					</div>
+					<div class="dropmenu" id="downmenu">
+						<p><a href="photo/photo.html">자료실</a></p>
+						<ul class="list-unstyled">
+							<li><a href="photo/photo.html">사진첩</a></li>
+							<li><a href="signlang/signlang.html">수어해설영상</a></li>
+						</ul>
+					</div>
+					<div class="dropmenu" id="downmenu">
+						<p><a href="sayhello/sayhello.html">사이트 정보</a></p>
+						<ul class="list-unstyled">
+							<li><a href="sayhello/sayhello.html">인사말</a></li>
+							<li><a href="notice/notice.html">공지사항</a></li>
+							<li><a href="qna/qna.html">문의게시판</a></li>
+						</ul>
+					</div>
+		  		</div>
+			</div>
+		</nav>
+	</div>
+<!-- main -->
+	
+			
+</body>
+</html>
