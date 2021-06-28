@@ -9,8 +9,8 @@ public class DBManager {
 	public static Connection getConnection() throws Exception {
 		Connection conn = null;
 		String driver = "oracle.jdbc.driver.OracleDriver";
-		String user = "jsltest";
-		String pw = "1234";
+		String user = "";
+		String pw = "";
 		String url = "jdbc:oracle:thin:@//localhost:1521/xe";
 		
 		Class.forName(driver);
