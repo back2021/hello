@@ -1,0 +1,10 @@
+// JSTL 쓰는게 편하지만 JSP로 코딩해야할때 
+<%@ page import="java.util.*"%>
+List<>
+// 리스트 함수 를 사용할라면 유틸을 임폴트 시키자
+
+<%@ page import="DAO.*"%>
+<%@ page import="DTO.*"%>
+// src 폴더 안에 패키지에 맞춰서 임폴트 해주자
+
+// java.text.* 이나, java.sql.* 을 사용해야 할때가 있다
