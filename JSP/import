@@ -8,3 +8,7 @@ List<>
 // src 폴더 안에 패키지에 맞춰서 임폴트 해주자
 
 // java.text.* 이나, java.sql.* 을 사용해야 할때가 있다
+
+<%@ include file="header.jsp" %>
+<%@ include file="footer.jsp" %>
+// 헤더 풋터 넣을때 쓰는거
