@@ -1,0 +1,21 @@
+@charset "UTF-8";
+
+/* 위로가기버튼 */
+.ac-sub-go-top{
+  width: 30px;
+  height: 30px;
+  bottom:calc(50% - 35px);
+  position: fixed;
+  right: calc((100% - 1200px)/ 2 - 80px);
+  display: inline-block;
+  background:rgba(255,255,255,0.7);
+  border: none;
+  background-size: 50%;
+  display: none;
+}
+
+/* 밑에 코드를 버튼을 사용할 곳에 넣어주기
+<button type="button" name="button" class="ac-sub-go-top">
+	<i class="fas fa-arrow-up"></i>
+</button> 
+	*/
