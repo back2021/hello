@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+<head>
+<meta charset='utf-8'>
+<style>
+	.square span{
+		position: absolute;
+		width: 30px;
+		height: 30px;
+		border-radius: 40% 60% 65% 35% / 40% 45% 55% 60%;
+		animation: circle 6s linear infinite;
+		background: rgba(49,95,196,.5);
+	}
+	@keyframes circle {
+		0% {
+			transform: rotate(0);
+		}
+		100% {
+			transform: rotate(360deg);
+		}
+	}
+</style>
+</head>
+<body>
+	<div class="square">
+		<span></span>
+	</div>
+</body>
+</html>
