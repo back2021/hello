@@ -1,4 +1,4 @@
-<?
+<?php
 	$host ="localhost";
 	//호스트
 	$user = "";
@@ -8,4 +8,9 @@
 	$dbname = "";
 	//사용하는 DB이름
 	$connect = new mysqli($host,$user,$pw,$dbname);
+
+
+	mysqli_close($connect);
+
+	//사용한다음에는 다시 닫아주자
 ?>
