@@ -30,7 +30,11 @@ varchar2(4000)의 크기를 훨씬 넘어버리기때문에 varchar2 보다는 C
 - <textarea name="content" class="summernote "></textarea> 
 를 감싸고 있는 <form>태그에
 enctype 을 multipart/form-data 로 해줍니다 
-(<textarea name="content" class="summernote " enctype="multipart/form-data" ></textarea>) 
+(
+<form name="summerform"  enctype="multipart/form-data">
+<textarea name="content" class="summernote" ></textarea>
+</form>
+) 
 - 서블릿에서 받을때
  : multipart로 보냈기 때문에 multipart로 받기 위해 설정을 해주셔야 합니다
 
