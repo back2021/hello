@@ -1,0 +1,30 @@
+<html>
+<head>
+</head>
+<body>
+<input type='text' value='123' oninput='notText(this)'>
+<script>
+
+function notText(e){
+	var numbertest = /[^0-9\.]/g;
+	if(numbertest.test(e.value)){
+		var numtext = '';
+		for(var ii = 0; ii<e.value.length; ii++){
+			var numbertext = e.value.substring(ii,ii+1);
+			if(numbertest.test(numbertext)){
+			}else{
+				numtext += numbertext;
+			}
+		}
+		if(numbertest.test(numtext)){
+			numtext = numtext.substring(1,numtext.length);
+		}
+		e.value="";
+		e.value = numtext;
+		alert("숫자만 입력해주세요.");
+	}
+
+}
+</script>
+</body>
+</html>
