@@ -6,24 +6,19 @@
 <script>
 
 function notText(e){
-	var numbertest = /[^0-9\.]/g;
+	var numbertest = /[^0-9]/;
+	// 위에다가 슬래쉬 문자를 넣어주면 그거 도 
 	if(numbertest.test(e.value)){
 		var numtext = '';
 		for(var ii = 0; ii<e.value.length; ii++){
 			var numbertext = e.value.substring(ii,ii+1);
-			if(numbertest.test(numbertext)){
-			}else{
+			if(!numbertest.test(numbertext)){
 				numtext += numbertext;
 			}
 		}
-		if(numbertest.test(numtext)){
-			numtext = numtext.substring(1,numtext.length);
-		}
-		e.value="";
 		e.value = numtext;
 		alert("숫자만 입력해주세요.");
 	}
-
 }
 </script>
 </body>
