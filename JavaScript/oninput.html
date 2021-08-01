@@ -4,10 +4,8 @@
 <body>
 <input type='text' value='123' oninput='notText(this)'>
 <script>
-
 function notText(e){
 	var numbertest = /[^0-9]/;
-	// 위에다가 슬래쉬 문자를 넣어주면 그거 도 
 	if(numbertest.test(e.value)){
 		var numtext = '';
 		for(var ii = 0; ii<e.value.length; ii++){
