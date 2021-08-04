@@ -8,7 +8,9 @@
 	$dbname = "";
 	//사용하는 DB이름
 	$connect = new mysqli($host,$user,$pw,$dbname);
-
+	
+	$connect->set_charset("utf8");
+	//utf8 설정
 
 	mysqli_close($connect);
 
