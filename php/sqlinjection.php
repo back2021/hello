@@ -1,10 +1,10 @@
 <?php
     include_once $_SERVER['DOCUMENT_ROOT'].'/common/dbconn.php';
     //  =
-    // $host = "localhost";
-    // $user = "swarm";
-    // $pw = "1234";
-    // $dbname = "swarm";
+    // $host = "";
+    // $user = "";
+    // $pw = "";
+    // $dbname = "";
     // $dbconn = new mysqli($host,$user,$pw,$dbname);
 
     $id = $_POST['m_id'];
