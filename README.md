@@ -6,6 +6,9 @@ CSS 가 적용이 안될때는 경로를 다시 확인해보던가 Ctrl + Shift 
 
 테스트 중 에러가 나면 console.log로 알아보기
 
+
+vscode 주석처리(Ctrl+/) 안될때는 Ctrl + Shift로 입력기 변경하고 시도해보기
+
 라즈베리 파이
 1. 라즈비안 OS 다운(zip 파일)
 2. 다운 받은 zip 파일 풀기(img 파일 나옴)
